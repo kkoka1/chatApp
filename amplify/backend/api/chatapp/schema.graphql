@@ -1,0 +1,16 @@
+type Message @model {
+  id: ID!
+  creator: String!
+  content: String!
+  createTime: AWSDateTime
+}
+type Query {
+  getMessages(filter: String): [Message!]!
+}
+type Mutation {
+  generateMessage(creator: String!, content: String!): Message!
+}
+schema {
+  query: Query
+  mutation: Mutation
+}
