@@ -6,30 +6,37 @@ import React, { useEffect, useState } from 'react';
 
 
 import API, { graphqlOperation } from '@aws-amplify/api';
-import { listMessages } from './graphql/queries';
+import { getMessages, listMessages } from './graphql/queries';
 
 import '@aws-amplify/pubsub';
 import { createMessage } from './graphql/mutations';
 
 
+
 function App() {
   
+  const sendMessage = () => {}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className = "chatWindow">
+      <div className = "messages">
+          <div className = "message">
+          HI my name is xyxcycycycycycyycycycycycycy....
+          </div>
+          <div className = "me">
+          Hello this is my first message.
+          </div>
+          <div className = "me">
+          Hey man how are you?
+          </div>
+      </div>
+      <form action = {sendMessage}>
+        <input type = "text"
+            name = "messageContent"
+            placeholder = "Type your message here"
+            value = {''} />
+        <button type = "button"> Send </button>
+      </form>
+      
     </div>
   );
 };
