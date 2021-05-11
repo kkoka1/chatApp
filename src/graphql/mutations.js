@@ -1,18 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const generateMessage = /* GraphQL */ `
-  mutation GenerateMessage($creator: String!, $content: String!) {
-    generateMessage(creator: $creator, content: $content) {
-      id
-      creator
-      content
-      createTime
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createMessage = /* GraphQL */ `
   mutation CreateMessage(
     $input: CreateMessageInput!
@@ -20,9 +8,8 @@ export const createMessage = /* GraphQL */ `
   ) {
     createMessage(input: $input, condition: $condition) {
       id
-      creator
+      userName
       content
-      createTime
       createdAt
       updatedAt
     }
@@ -35,9 +22,8 @@ export const updateMessage = /* GraphQL */ `
   ) {
     updateMessage(input: $input, condition: $condition) {
       id
-      creator
+      userName
       content
-      createTime
       createdAt
       updatedAt
     }
@@ -50,9 +36,8 @@ export const deleteMessage = /* GraphQL */ `
   ) {
     deleteMessage(input: $input, condition: $condition) {
       id
-      creator
+      userName
       content
-      createTime
       createdAt
       updatedAt
     }

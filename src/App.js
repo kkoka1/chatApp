@@ -2,42 +2,40 @@ import logo from './logo.svg';
 import './App.css';
 
 import Split from 'react-split'
-import React, { useEffect, useState } from 'react';
 
 
-import API, { graphqlOperation } from '@aws-amplify/api';
-import { getMessages, listMessages } from './graphql/queries';
 
-import '@aws-amplify/pubsub';
-import { createMessage } from './graphql/mutations';
 
+
+//import '@aws-amplify/pubsub';
+
+import awsExports from './aws-exports';
+//import Amplify from '@aws-amplify/core';
+
+import { withAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
+import Amplify from '@aws-amplify/core';
+
+import LoginButton from './components/LoginButton';
+
+import ChatWindow from './components/ChatWindow';
+
+import { useAuth0 } from '@auth0/auth0-react';
+
+Amplify.configure(awsExports);
 
 
 function App() {
-  
-  const sendMessage = () => {}
+
+  //console.log("User details are ", user.email);
+  //console.log("MessageContent and setMessageContents are ", setMessageContent);
+  const { isAuthenticated } = useAuth0();
+
   return (
-    <div className = "chatWindow">
-      <div className = "messages">
-          <div className = "message">
-          HI my name is xyxcycycycycycyycycycycycycy....
-          </div>
-          <div className = "me">
-          Hello this is my first message.
-          </div>
-          <div className = "me">
-          Hey man how are you?
-          </div>
-      </div>
-      <form action = {sendMessage}>
-        <input type = "text"
-            name = "messageContent"
-            placeholder = "Type your message here"
-            value = {''} />
-        <button type = "button"> Send </button>
-      </form>
-      
+    <div>
+      { isAuthenticated ? <ChatWindow/> : <LoginButton/> }
     </div>
+    
+  
   );
 };
 

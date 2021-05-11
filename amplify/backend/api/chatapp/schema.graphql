@@ -1,16 +1,9 @@
-type Message @model {
+type Message 
+@model 
+@key (name: "byUserName", fields: ["userName", "createdAt"], queryField: "byUserName")
+@auth (rules: [ { allow: public, provider: iam, operations: [create, update, delete, read] } ]){
   id: ID!
-  creator: String!
+  userName: String!
   content: String!
-  createTime: AWSDateTime
-}
-type Query {
-  getMessages(filter: String): [Message!]!
-}
-type Mutation {
-  generateMessage(creator: String!, content: String!): Message!
-}
-schema {
-  query: Query
-  mutation: Mutation
+  createdAt: AWSDateTime
 }

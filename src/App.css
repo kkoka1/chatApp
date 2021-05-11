@@ -8,14 +8,14 @@ body {
 .messages {
   font-family: arial, sans-serif;
   font-size: 12pt;
-  background-color: red;
+  background-color: rgb(170, 208, 218);
 
   display: flex;
   flex-direction: column;
 }
 
 .messages .message{
-  background-color: blue;
+  background-color: white;
   border-radius: 25px;
   
   padding: 15px;
@@ -33,7 +33,7 @@ body {
 }
 
 .messages .me{
-  background-color: grey;
+  background-color: rgb(74, 202, 74);
   border-radius: 25px;
 
   padding: 15px;

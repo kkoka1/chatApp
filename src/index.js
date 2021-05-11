@@ -6,14 +6,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import Amplify from '@aws-amplify/core';
+//import { Auth } from 'aws-amplify';
 import awsExports from './aws-exports';
+import { Auth0Provider } from '@auth0/auth0-react';
 
-Amplify.configure(awsExports);
+
+Amplify.configure(awsExports)
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Auth0Provider
+    domain = "dev-dv7p8k7c.us.auth0.com"
+    clientId = "XyMx611ZnFGfofdis5isHCRxamWmRSeB"
+    redirectUri = {window.location.origin}>
     <App />
-  </React.StrictMode>,
+  </Auth0Provider>,
+  /*<React.StrictMode>
+    <App />
+  </React.StrictMode>,*/
   document.getElementById('root')
 );
 
