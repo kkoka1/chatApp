@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import API, { graphqlOperation } from '@aws-amplify/api';
 
-import { byUserName } from '../graphql/queries';
+import { messagesByConversationId, listMessages } from '../graphql/queries';
 import { createMessage } from '../graphql/mutations';
 import { onCreateMessage } from '../graphql/subscriptions';
 
@@ -21,19 +21,24 @@ const ChatWindow = () => {
     const[messageContent, setMessageContent] = useState('');
     const[messages, setMessages] = useState([]);
     const { user, isAuthenticated } = useAuth0();
-    console.log("User details ", user.email);
-    console.log("Message is ", messageContent);
+    //console.log("User details ", user.email);
+    //console.log("Message is ", messageContent);
+    //console.log("List messages query is ", listMessages);
+    //console.log("Curr time in AWS format is ", new Date().toISOString());
     useEffect( () => { 
-        API.graphql(graphqlOperation(byUserName, {
-          userName: user.email,
+        API.graphql(graphqlOperation(messagesByConversationId, {
+          conversationId: '1',
           sortDirection: 'ASC'
         }))
-        .then( (response) => { const items = response.data?.byUserName?.items;
+        .then( (response) => { //console.log("Msgs sorted ");
+        const items = response.data?.messagesByConversationId?.items;
+        //console.log("Items are ", items);
         if (items) { 
           setMessages(items); 
         }
     
-      }); 
+      })
+      .catch( (error) => console.log("Can't display messages in a sorted order ", error)); 
     }, []);
 
     
@@ -48,13 +53,14 @@ const ChatWindow = () => {
         try{
           const messageToBeSent = {
               userName: user.email,
+              conversationId: '1',
               content: messageContent.trim()
           };
-          console.log("Message Object is ", messageToBeSent);
+          //console.log("Message Object is ", messageToBeSent);
           setMessageContent('');
           console.count();
           await API.graphql(graphqlOperation(createMessage, { input: messageToBeSent })).then( console.log("Message is created") )
-          .catch( console.log("Message cannot be created") );
+          .catch( error => console.log("Message cannot be created ", error) );
         }
         catch (error){
             console.warn(error);
@@ -67,9 +73,10 @@ const ChatWindow = () => {
           <LogoutButton/>
           <div className = "messages">
           { messages.map( (message) => (
+              //console.log("Message username is ", message.userName);
               <div
               key = { message.id }
-              className = { message.userName === user.email ? "me" : "message" } > { message.content } </div>
+              className = {message.userName === user.email ? "me" : "message"} > { message.content } </div>
           ))}
           </div>
           <form>

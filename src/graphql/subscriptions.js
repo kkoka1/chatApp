@@ -5,9 +5,10 @@ export const onCreateMessage = /* GraphQL */ `
   subscription OnCreateMessage {
     onCreateMessage {
       id
-      userName
+      userEmail
       content
       createdAt
+      conversationId
       updatedAt
     }
   }
@@ -16,9 +17,10 @@ export const onUpdateMessage = /* GraphQL */ `
   subscription OnUpdateMessage {
     onUpdateMessage {
       id
-      userName
+      userEmail
       content
       createdAt
+      conversationId
       updatedAt
     }
   }
@@ -27,9 +29,10 @@ export const onDeleteMessage = /* GraphQL */ `
   subscription OnDeleteMessage {
     onDeleteMessage {
       id
-      userName
+      userEmail
       content
       createdAt
+      conversationId
       updatedAt
     }
   }

@@ -28,14 +28,17 @@ function App() {
 
   //console.log("User details are ", user.email);
   //console.log("MessageContent and setMessageContents are ", setMessageContent);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
+  //console.log("Auth info is ", useAuth0());
+  if(isLoading){
+    return <div> Loading... </div>;
+  }
 
+  //if(isAuthenticated && user)
   return (
     <div>
       { isAuthenticated ? <ChatWindow/> : <LoginButton/> }
     </div>
-    
-  
   );
 };
 

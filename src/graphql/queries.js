@@ -5,9 +5,10 @@ export const getMessage = /* GraphQL */ `
   query GetMessage($id: ID!) {
     getMessage(id: $id) {
       id
-      userName
+      userEmail
       content
       createdAt
+      conversationId
       updatedAt
     }
   }
@@ -21,26 +22,27 @@ export const listMessages = /* GraphQL */ `
     listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userName
+        userEmail
         content
         createdAt
+        conversationId
         updatedAt
       }
       nextToken
     }
   }
 `;
-export const byUserName = /* GraphQL */ `
-  query ByUserName(
-    $userName: String
+export const messagesByConversationId = /* GraphQL */ `
+  query MessagesByConversationId(
+    $conversationId: ID
     $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelMessageFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    byUserName(
-      userName: $userName
+    messagesByConversationId(
+      conversationId: $conversationId
       createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
@@ -49,9 +51,10 @@ export const byUserName = /* GraphQL */ `
     ) {
       items {
         id
-        userName
+        userEmail
         content
         createdAt
+        conversationId
         updatedAt
       }
       nextToken

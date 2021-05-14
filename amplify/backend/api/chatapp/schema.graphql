@@ -1,9 +1,10 @@
 type Message 
-@model 
-@key (name: "byUserName", fields: ["userName", "createdAt"], queryField: "byUserName")
+@model
+@key(name: "byConversationId", fields: ["conversationId", "createdAt"], queryField: "messagesByConversationId") 
 @auth (rules: [ { allow: public, provider: iam, operations: [create, update, delete, read] } ]){
   id: ID!
-  userName: String!
+  userEmail: String!
   content: String!
   createdAt: AWSDateTime
+  conversationId: ID!
 }
