@@ -3,19 +3,11 @@ import './App.css';
 
 import Split from 'react-split'
 
-
-
-
-
-//import '@aws-amplify/pubsub';
-
 import awsExports from './aws-exports';
-//import Amplify from '@aws-amplify/core';
 
-import { withAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import Amplify from '@aws-amplify/core';
 
-import LoginButton from './components/LoginButton';
+import LoginPage from './components/LoginPage';
 
 import ChatWindow from './components/ChatWindow';
 
@@ -25,19 +17,19 @@ Amplify.configure(awsExports);
 
 
 function App() {
-
-  //console.log("User details are ", user.email);
-  //console.log("MessageContent and setMessageContents are ", setMessageContent);
-  const { isAuthenticated, isLoading, user } = useAuth0();
-  //console.log("Auth info is ", useAuth0());
+  const { isAuthenticated, isLoading, error } = useAuth0();
+  console.log("Auth info is ", useAuth0());
   if(isLoading){
     return <div> Loading... </div>;
   }
 
-  //if(isAuthenticated && user)
+  if(error){
+    return <div> Error... </div>;
+  }
+
   return (
     <div>
-      { isAuthenticated ? <ChatWindow/> : <LoginButton/> }
+      { isAuthenticated ? <ChatWindow/> : <LoginPage/> }
     </div>
   );
 };

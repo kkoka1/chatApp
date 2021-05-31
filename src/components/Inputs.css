@@ -1,0 +1,17 @@
+input {
+  width: 50%;
+  /* for aligning the text-box in the middle of the web-page */
+  margin-left: 20%;
+  position: relative;
+  top: 10px;
+  bottom: 10px;
+  
+  /* for rounding-off the corners of the text-box */
+  border-radius: 10px;
+}
+  
+.sendButton{
+  position: relative;
+  top: 10px;
+  bottom: 10px;
+}

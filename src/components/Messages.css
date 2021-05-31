@@ -1,0 +1,52 @@
+
+.messages {
+    font-family: arial, sans-serif;
+    font-size: 12pt;
+    background-color: rgb(170, 208, 218);
+
+    /* to display consecutive message bubbles in vertically downward direction */
+    display: flex;
+    flex-direction: column;
+}
+
+.messages .recipient {
+    background-color: white;
+    border-radius: 25px;
+    padding: 15px;
+
+    /* To size the message-bubble according to its content. */
+    height: fit-content;
+    width: fit-content;
+    max-width: 45%;
+
+    /* To make the message bubble flex horizontally. */
+    display: flex;
+    flex-direction: row;
+
+    /* To align the messages of the recipient to the left of the chat-window. */
+    margin-left: 10px;
+    margin-right: auto;
+    
+    /* For displaying a slight-gap in between two consecutive message bubbles. */
+    margin-top: 10px;
+}
+
+.messages .sender {
+    background-color: rgb(74, 202, 74);
+    border-radius: 25px;
+
+    padding: 15px;
+
+    height: fit-content;
+    width: fit-content;
+    max-width: 45%;
+
+    display: flex;
+    flex-direction: row-reverse;
+
+    /* To align the messages of the sender to the right of the chat-window. */
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+  

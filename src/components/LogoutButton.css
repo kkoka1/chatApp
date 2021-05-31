@@ -1,0 +1,14 @@
+.logoutButton {
+    /* Dimensions */
+    height: fit-content;
+    width: fit-content;
+
+    /* font features */
+    font-family: arial, sans-serif;
+
+    /* alignment */
+    position: relative;
+    top: 10px;
+
+    margin-left: 10px;
+}
